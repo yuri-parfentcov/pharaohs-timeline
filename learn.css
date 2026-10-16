@@ -1,4 +1,5 @@
-.hero-small { padding: 32px 16px 48px; }
+.hero-small { padding: 32px 16px 72px; }
+.hero-small::after { border-left-width: 90px; border-right-width: 90px; border-bottom-width: 40px; }
 .hero-small .hero-kicker a { color: #f3cf6b; text-decoration: none; }
 .hero-small .hero-kicker a:hover { text-decoration: underline; }
 
