@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Фараоны Египта — таймлайн</title>
+  <meta name="description" content="Интерактивная лента времени фараонов Древнего Египта для школьников: пирамиды, храмы, открытия, ссылки на Google Earth и виртуальные туры.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔺</text></svg>">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="hero">
+    <div class="hero-inner">
+      <p class="hero-kicker">𓂀 Учебная лента времени</p>
+      <h1>Фараоны Древнего Египта</h1>
+      <p class="hero-lead">Путешествие длиной больше 3000 лет: от первых иероглифов и пирамид до Клеопатры — и современных открытий археологов.</p>
+    </div>
+  </header>
+
+  <main>
+    <section class="intro card-plain">
+      <h2>Кто такие фараоны?</h2>
+      <p><strong>Фараон</strong> — царь Древнего Египта. Египтяне верили, что фараон — посредник между людьми и богами и что он следит за порядком в мире. Слово «фараон» значит «большой дом», то есть дворец.</p>
+      <p>Историки делят историю Египта на <strong>царства</strong> — времена, когда страна была единой и сильной, и <strong>переходные периоды</strong> — когда она распадалась на части. Правителей одной семьи называют <strong>династией</strong>.</p>
+      <p class="note">⚠️ Даты очень древних событий примерные: учёные спорят о них, и разница может быть 50–100 лет. «До н.э.» значит «до нашей эры»: чем больше число, тем раньше это было.</p>
+      <div id="eraLegend" class="era-legend" aria-label="Эпохи"></div>
+    </section>
+
+    <section class="controls" aria-label="Управление лентой времени">
+      <div class="control-group" role="group" aria-label="Сортировка">
+        <span class="control-label">Порядок:</span>
+        <button type="button" class="chip" data-sort="asc" aria-pressed="true">⬇️ От древних к поздним</button>
+        <button type="button" class="chip" data-sort="desc" aria-pressed="false">⬆️ От поздних к древним</button>
+      </div>
+      <div class="control-group" role="group" aria-label="Что показывать">
+        <span class="control-label">Показать:</span>
+        <div id="typeFilters" class="chips"></div>
+      </div>
+      <div class="control-group">
+        <label class="control-label" for="eraSelect">Эпоха:</label>
+        <select id="eraSelect"></select>
+        <label class="control-label" for="search">Поиск:</label>
+        <input id="search" type="search" placeholder="Например: Рамсес">
+      </div>
+      <div class="control-group">
+        <button type="button" class="chip" id="expandAll">Раскрыть все</button>
+        <button type="button" class="chip" id="collapseAll">Свернуть все</button>
+        <span id="count" class="count" aria-live="polite"></span>
+      </div>
+    </section>
+
+    <ol id="timeline" class="timeline"></ol>
+
+    <section class="resources card-plain">
+      <h2>🧭 Виртуальные экскурсии и полезные сайты</h2>
+      <ul id="resources" class="resource-list"></ul>
+    </section>
+
+    <section class="sources card-plain">
+      <h2>📚 Источники</h2>
+      <ul id="sources"></ul>
+      <p class="note">Тексты написаны простым языком для учеников 5-го класса. Сайты с пометкой «англ.» — на английском языке: можно включить автоперевод в браузере.</p>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>Сделано для уроков истории · <a href="https://github.com/yuri-parfentcov/pharaohs-timeline">исходный код на GitHub</a></p>
+  </footer>
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
