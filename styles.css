@@ -145,6 +145,7 @@ select, input[type="search"] {
 
 .tl-item {
   position: relative;
+  scroll-margin-top: 180px;
   width: 50%;
   padding: 0 36px 22px 0;
 }
@@ -244,6 +245,8 @@ details:not([open]) .tl-more .close-txt { display: none; }
   .tl-item::before, .tl-item.right::before { left: 0; right: auto; }
   .tl-era { text-align: left; padding-left: 36px; }
   .card-plain { padding: 16px; }
+  .controls { position: static; }
+  .tl-item { scroll-margin-top: 16px; }
 }
 
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
