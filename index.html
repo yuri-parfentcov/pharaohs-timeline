@@ -26,6 +26,12 @@
       <div id="eraLegend" class="era-legend" aria-label="Эпохи"></div>
     </section>
 
+    <section class="intro card-plain">
+      <h2>📖 Истории из жизни фараонов: правда или легенда?</h2>
+      <p>Во многих карточках есть рассказы о приключениях фараонов — ищите значок <strong>📖</strong> и открывайте карточку. Но будьте как настоящий историк: у каждой истории указано, <strong>откуда мы её знаем</strong>.</p>
+      <ul id="storyKinds" class="kind-list"></ul>
+    </section>
+
     <section class="controls" aria-label="Управление лентой времени">
       <div class="control-group" role="group" aria-label="Сортировка">
         <span class="control-label">Порядок:</span>
@@ -35,6 +41,7 @@
       <div class="control-group" role="group" aria-label="Что показывать">
         <span class="control-label">Показать:</span>
         <div id="typeFilters" class="chips"></div>
+        <button type="button" class="chip" id="onlyStories" aria-pressed="false">📖 Только с историями</button>
       </div>
       <div class="control-group">
         <label class="control-label" for="eraSelect">Эпоха:</label>
@@ -68,6 +75,7 @@
   </footer>
 
   <script src="data.js"></script>
+  <script src="stories.js"></script>
   <script src="app.js"></script>
 </body>
 </html>

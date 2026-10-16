@@ -250,3 +250,53 @@ details:not([open]) .tl-more .close-txt { display: none; }
 }
 
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+/* ───── Истории ───── */
+.tl-has-story {
+  margin: 8px 0 0;
+  font-size: .88rem;
+  font-weight: 600;
+  color: var(--gold);
+}
+.story {
+  margin: 16px 0 6px;
+  padding: 16px 18px;
+  border-radius: 12px;
+  background: linear-gradient(180deg, #fbf1d6, #f4e3b8);
+  border: 1px solid #e0c98c;
+  color: #2a2116;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.02rem;
+}
+.story + .story { margin-top: 12px; }
+.story-head { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; font-family: system-ui, sans-serif; }
+.story-label { font-weight: 700; color: #8a5a00; font-size: .85rem; text-transform: uppercase; letter-spacing: .05em; }
+.tl-body .story-title { margin: 6px 0 8px; font-size: 1.2rem; color: #5a3b00; }
+.tl-body .story p { margin: 0 0 10px; }
+.story p:first-of-type::first-letter { font-size: 1.8em; font-weight: 700; color: #8a5a00; }
+.tl-body .story-source {
+  font-family: system-ui, sans-serif;
+  font-size: .85rem;
+  color: #6b5d48;
+  border-top: 1px dashed #d4bd80;
+  padding-top: 8px;
+  margin-bottom: 0;
+}
+.story-kind {
+  display: inline-block;
+  font-family: system-ui, sans-serif;
+  font-size: .78rem; font-weight: 600;
+  padding: 2px 8px; border-radius: 999px;
+}
+.kind-doc    { background: #dbe8ff; color: #1f3f7a; }
+.kind-tale   { background: #efe0ff; color: #5a2d82; }
+.kind-legend { background: #ffe1d6; color: #8a3214; }
+.kind-find   { background: #d9f2e4; color: #1f6040; }
+.kind-list { padding-left: 0; list-style: none; }
+.kind-list li { margin: 6px 0; }
+@media (prefers-color-scheme: dark) {
+  .story { background: linear-gradient(180deg, #2f2817, #2a2214); border-color: #5a4a26; color: var(--ink); }
+  .story-label, .story p:first-of-type::first-letter { color: #e7bf5f; }
+  .tl-body .story-title { color: #f0d08a; }
+  .tl-body .story-source { color: var(--muted); border-top-color: #5a4a26; }
+}

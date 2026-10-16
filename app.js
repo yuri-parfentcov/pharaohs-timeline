@@ -5,7 +5,8 @@
     sort: "asc",
     types: new Set(Object.keys(TYPES)),
     era: "all",
-    query: ""
+    query: "",
+    onlyStories: false
   };
   const openIds = new Set();
 
@@ -37,7 +38,25 @@
     return `<h4>${title}</h4><ul>${arr.map((x) => `<li>${esc(x)}</li>`).join("")}</ul>`;
   }
 
+  function renderStories(stories) {
+    if (!stories || !stories.length) return "";
+    return stories.map((st) => {
+      const k = STORY_KINDS[st.kind];
+      return `
+      <section class="story">
+        <div class="story-head">
+          <span class="story-label">📖 История</span>
+          <span class="story-kind kind-${st.kind}" title="${esc(k.hint)}">${k.icon} ${esc(k.name)}</span>
+        </div>
+        <h4 class="story-title">${esc(st.title)}</h4>
+        ${st.text.map((p) => `<p>${esc(p)}</p>`).join("")}
+        <p class="story-source"><strong>Откуда мы это знаем:</strong> ${esc(st.source)}</p>
+      </section>`;
+    }).join("");
+  }
+
   function renderItem(item, side) {
+    const stories = STORIES[item.id] || [];
     const era = ERAS[item.era];
     const type = TYPES[item.type];
     const isPharaoh = item.type === "pharaoh";
@@ -50,9 +69,11 @@
           <h3>${esc(item.name)}</h3>
           ${item.dynasty ? `<div class="tl-dyn">${esc(item.dynasty)} · ${esc(era.name)}</div>` : `<div class="tl-dyn">${esc(era.name)}</div>`}
           <p class="tl-summary">${esc(item.summary)}</p>
+          ${stories.length ? `<p class="tl-has-story">📖 ${stories.map((st) => esc(st.title)).join(" · ")}</p>` : ""}
           <span class="tl-more"><span class="open-txt">Подробнее</span><span class="close-txt">Свернуть</span></span>
         </summary>
         <div class="tl-body">
+          ${renderStories(stories)}
           <h4>${isPharaoh ? "Кто это?" : "Что это?"}</h4><p>${esc(item.who)}</p>
           <h4>Какое это было время</h4><p>${esc(item.time)}</p>
           ${list(isPharaoh ? "Главные достижения" : "Самое важное", item.achievements)}
@@ -68,8 +89,9 @@
   function matches(item) {
     if (!state.types.has(item.type)) return false;
     if (state.era !== "all" && item.era !== state.era) return false;
+    if (state.onlyStories && !STORIES[item.id]) return false;
     if (state.query) {
-      const hay = [item.name, item.summary, item.who, item.dynasty || "", ...(item.places || []).map((p) => p.name)].join(" ").toLowerCase();
+      const hay = [item.name, item.summary, item.who, item.dynasty || "", ...(item.places || []).map((p) => p.name), ...(STORIES[item.id] || []).map((st) => st.title)].join(" ").toLowerCase();
       if (!hay.includes(state.query)) return false;
     }
     return true;
@@ -123,6 +145,16 @@
     btn.setAttribute("aria-pressed", String(state.types.has(k)));
     render();
   });
+
+  // Только с историями
+  $("#onlyStories").addEventListener("click", (e) => {
+    state.onlyStories = !state.onlyStories;
+    e.currentTarget.setAttribute("aria-pressed", String(state.onlyStories));
+    render();
+  });
+
+  $("#storyKinds").innerHTML = Object.entries(STORY_KINDS).map(([k, v]) =>
+    `<li><span class="story-kind kind-${k}">${v.icon} ${esc(v.name)}</span> — ${esc(v.hint)}</li>`).join("");
 
   // Эпохи
   const eraSelect = $("#eraSelect");
