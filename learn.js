@@ -223,7 +223,8 @@
     } else {
       c.wrong++;
       c.box = 1;
-      c.due = t;
+      // второй промах подряд — не мучаем сегодня, повторим завтра
+      c.due = isRetry ? addDays(t, 1) : t;
       session.wrong++;
       if (!isRetry) {
         session.retry.add(f.id);
@@ -245,7 +246,10 @@
     let plant;
     if (correct && after > before) plant = `${STAGES[before]} → ${STAGES[after]} Растение подросло!`;
     else if (correct) plant = `${STAGES[after]} Молодец! Закрепим завтра.`;
-    else plant = `🥀 Растение подвяло и стало ростком ${STAGES[1]}. Не беда — повторим ещё раз сегодня.`;
+    else {
+      const again = session.queue.lastIndexOf(f) > session.pos ? "Повторим ещё раз в конце тренировки." : "Повторим завтра.";
+      plant = before === 0 ? `${STAGES[1]} Посадили росток. ${again}` : `🥀 Растение подвяло и стало ростком ${STAGES[1]}. Не беда! ${again}`;
+    }
 
     let explain = f.explain;
     if (f.type === "order") {
