@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Сад знаний — фараоны</title>
+  <meta name="description" content="Тренировка с повторениями: отвечай на вопросы о фараонах Египта и выращивай сад в оазисе.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌴</text></svg>">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="learn.css">
+</head>
+<body>
+  <header class="hero hero-small">
+    <div class="hero-inner">
+      <p class="hero-kicker"><a href="index.html">← Лента времени</a></p>
+      <h1>🌴 Сад знаний</h1>
+      <p class="hero-lead">Отвечай на вопросы — и в твоём оазисе на берегу Нила вырастут пальмы.</p>
+    </div>
+  </header>
+
+  <main class="learn">
+    <!-- Главный экран -->
+    <section id="home">
+      <div class="stats">
+        <div class="stat"><span class="stat-num" id="statStreak">0</span><span class="stat-label">🔥 дней подряд</span></div>
+        <div class="stat"><span class="stat-num" id="statGold">0</span><span class="stat-label">🪙 золото храбрости</span></div>
+        <div class="stat"><span class="stat-num" id="statLearned">0</span><span class="stat-label">🌳 запомнено</span></div>
+        <div class="stat"><span class="stat-num" id="statPalms">0</span><span class="stat-label">🌴 пальм</span></div>
+      </div>
+
+      <div class="start card-plain">
+        <p id="todayText" class="today-text"></p>
+        <button type="button" class="big-btn" id="startBtn">Начать тренировку</button>
+        <button type="button" class="chip" id="extraBtn" hidden>Ещё 5 новых вопросов</button>
+      </div>
+
+      <section class="card-plain">
+        <h2>Мой оазис</h2>
+        <div class="legend" id="stageLegend"></div>
+        <div class="garden" id="garden"></div>
+      </section>
+
+      <details class="card-plain how">
+        <summary><strong>Как это работает?</strong></summary>
+        <p>Каждый факт — это растение. Ответил правильно — растение подрастает, а вопрос вернётся через несколько дней: через 1, 2, 3, потом 5 дней. Ошибся — растение подвянет и снова станет ростком, а вопрос повторится сегодня же.</p>
+        <p>Так работает <strong>интервальное повторение</strong>: мозг лучше всего запоминает то, что почти успел забыть. Тренируйся по 10 минут каждый день — и через неделю-две вырастет целый оазис.</p>
+        <p>🌱 росток → 🌿 кустик → 🪴 деревце → 🌳 дерево (ты помнишь!) → 🌴 пальма (помнишь надолго)</p>
+        <p class="note">Прогресс сохраняется только в этом браузере на этом устройстве.</p>
+        <button type="button" class="chip danger" id="resetBtn">Начать сад заново</button>
+      </details>
+    </section>
+
+    <!-- Экран вопроса -->
+    <section id="quiz" hidden>
+      <div class="progress"><div class="progress-bar" id="progressBar"></div></div>
+      <p class="progress-text" id="progressText"></p>
+      <article class="q-card card-plain">
+        <p class="q-type" id="qType"></p>
+        <div id="qClues"></div>
+        <h2 class="q-text" id="qText"></h2>
+        <div class="options" id="options"></div>
+        <button type="button" class="chip" id="clueBtn" hidden>💡 Ещё подсказка</button>
+        <div class="feedback" id="feedback" hidden></div>
+      </article>
+      <div class="quiz-actions">
+        <button type="button" class="big-btn" id="nextBtn" hidden>Дальше →</button>
+        <button type="button" class="chip" id="quitBtn">Закончить</button>
+      </div>
+    </section>
+
+    <!-- Итоги -->
+    <section id="done" hidden>
+      <div class="card-plain done-card">
+        <h2 id="doneTitle"></h2>
+        <p id="doneText"></p>
+        <button type="button" class="big-btn" id="homeBtn">В мой оазис 🌴</button>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p><a href="index.html">Лента времени фараонов</a> · <a href="https://github.com/yuri-parfentcov/pharaohs-timeline">исходный код</a></p>
+  </footer>
+
+  <script src="data.js"></script>
+  <script src="quiz-data.js"></script>
+  <script src="learn.js"></script>
+</body>
+</html>

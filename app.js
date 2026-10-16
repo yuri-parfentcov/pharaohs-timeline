@@ -62,7 +62,7 @@
     const isPharaoh = item.type === "pharaoh";
     const links = (item.links || []).map((l) => `<li><a href="${esc(l.u)}" ${ext}>${esc(l.t)}</a></li>`).join("");
     return `
-    <li class="tl-item ${side}" data-icon="${type.icon}" style="--era:${era.color}">
+    <li class="tl-item ${side}" id="item-${item.id}" data-icon="${type.icon}" style="--era:${era.color}">
       <details class="tl-card" data-type="${item.type}" data-id="${item.id}" ${openIds.has(item.id) ? "open" : ""}>
         <summary>
           <span class="tl-date">${esc(item.date)}</span><span class="tl-type">${type.name}</span>
@@ -183,4 +183,17 @@
   $("#sources").innerHTML = SOURCES.map((s) => `<li>${esc(s)}</li>`).join("");
 
   render();
+
+  // Ссылка вида index.html#item-khufu открывает нужную карточку (её дают из «Сада знаний»)
+  function openFromHash() {
+    if (!location.hash.startsWith("#item-")) return;
+    const id = decodeURIComponent(location.hash.slice(6));
+    const d = timeline.querySelector(`details[data-id="${CSS.escape(id)}"]`);
+    if (!d) return;
+    d.open = true;
+    openIds.add(id);
+    d.closest("li").scrollIntoView({ block: "start" });
+  }
+  openFromHash();
+  window.addEventListener("hashchange", openFromHash);
 })();

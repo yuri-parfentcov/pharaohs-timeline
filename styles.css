@@ -300,3 +300,16 @@ details:not([open]) .tl-more .close-txt { display: none; }
   .tl-body .story-title { color: #f0d08a; }
   .tl-body .story-source { color: var(--muted); border-top-color: #5a4a26; }
 }
+
+.hero-cta {
+  display: inline-block;
+  margin-top: 18px;
+  padding: 12px 22px;
+  border-radius: 999px;
+  background: #f3cf6b;
+  color: #12284f;
+  font-weight: 700;
+  text-decoration: none;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, .25);
+}
+.hero-cta:hover { background: #f8dd8f; }
